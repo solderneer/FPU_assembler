@@ -13,9 +13,6 @@ FILE *asm_fp;
 
 // Main Loop
 int main(int argc, const char* argv[]) {
-    // Local Variable declaration
-    char* file_location;
-
     // Basic argument parsing and error checking
     if(argc < 2) {
         printf("Invalid number of args passed : At least 1 argument required");
