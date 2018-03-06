@@ -19,7 +19,7 @@ int main(int argc, const char* argv[]) {
     int arg_len;
 
     if(argc < 2) {
-        printf("Invalid number of args passed : At least 1 argument required");
+        printf("Invalid number of args passed : At least 1 argument required\n");
         return 0;
     }
 
@@ -30,11 +30,12 @@ int main(int argc, const char* argv[]) {
     asm_fp = fopen(file_location, "r");
     // Check if file_location is valid
     if(asm_fp == NULL) {
-        printf("No such file found");
+        printf("No such file found\n");
         return 0;
     }
     else
-        printf("%s", file_location);
+        printf("%s\n", file_location);
 
+    free(file_location);
     return 0;
 }
