@@ -4,7 +4,7 @@
  * the FPU Instruction Set Architecture. (FISA)
  */
 
-#include "stdio.h"
+#include "stdlib.h"
 #include "string.h"
 
 // Global Variable declarations
@@ -14,8 +14,13 @@
 // Main Loop
 int main(int argc, const char* argv[]) {
     // Basic argument parsing and error checking
-    if(argc < 2) {
-        printf("Invalid number of args passed : At least 1 argument required");
+    if(argv < 3) {
+        printf("Invalid number of args passed");
+        return 0;
+    }
+
+    if(argv[1] != "-a"){
+        printf("Unsupported argument type");
         return 0;
     }
 }
