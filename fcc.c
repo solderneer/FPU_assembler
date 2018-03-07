@@ -7,6 +7,7 @@
 #include "stdio.h"
 #include "stdlib.h"
 #include "string.h"
+#include "uthash.h"
 
 // Global Variable declarations
 FILE *asm_fp;
