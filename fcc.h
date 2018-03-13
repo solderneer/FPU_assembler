@@ -3,11 +3,11 @@
 
 #include "uthash.h"
 
-struct dict_struct {
+typedef struct {
     char mnemonic[3];
     int opcode;
     UT_hash_handle hh;
-}
+} dict_struct;
 
 const char* opcode[] = {"add",
                         "sub",
@@ -22,5 +22,14 @@ const char* opcode[] = {"add",
                         "shl",
                         "shr",
                         "jmp",
-                        "jmpeq"}
+                        "jmpeq"};
+
+const char* reglist[] = {"rg0",
+                         "rg1",
+                         "rg2",
+                         "rg3",
+                         "rg4",
+                         "rg5",
+                         "rg6",
+                         "rg7"};
 #endif /* FCC_H_ */
