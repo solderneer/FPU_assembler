@@ -4,8 +4,8 @@
 #include "uthash.h"
 
 typedef struct {
-    char mnemonic[3];
-    int opcode;
+    char name[3];
+    int id;
     UT_hash_handle hh;
 } dict_struct;
 
