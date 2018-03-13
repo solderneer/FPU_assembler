@@ -58,6 +58,7 @@ int main(int argc, const char* argv[]) {
 
     if(out_fp == NULL) {
         printf("Output file location invalid\n");
+        printf("%s\n", output_file);
         freeAll();
         return 0;
     }
@@ -82,8 +83,8 @@ int main(int argc, const char* argv[]) {
         HASH_ADD_STR(reg_list, name, s);
     }
 
-    HASH_FIND_STR(opcode_list, "sub", s);
-    if (s) printf("id of sub is %d\n", s->id);
+    HASH_FIND_STR(opcode_list, "ldr", s);
+    if (s) printf("%d\n", s->id);
     freeAll();
     return 1;
 }
