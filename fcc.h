@@ -22,7 +22,7 @@ const char* opcode[] = {"add",
                         "shl",
                         "shr",
                         "jmp",
-                        "jmpeq"};
+                        "jeq"};
 
 const char* reglist[] = {"rg0",
                          "rg1",

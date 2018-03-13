@@ -4,9 +4,11 @@
  * the FPU Instruction Set Architecture. (FISA)
  */
 
-#include "stdio.h"
-#include "stdlib.h"
-#include "string.h"
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+#include <stdint.h>
+
 #include "uthash.h"
 #include "fcc.h"
 
@@ -19,8 +21,12 @@ char* output_file;
 const char **n;
 
 dict_struct *s, *opcode_list, *reg_list, *del;
+
 // Private Function prototypes
-void freeAll(void);
+void freeAll(int status);
+void setupDicts(void);
+uint16_t getOpcode(char* opcode);
+uint16_t getRegval(char* regnum);
 
 // Main Loop
 int main(int argc, const char* argv[]) {
@@ -52,19 +58,26 @@ int main(int argc, const char* argv[]) {
     // Check if file_location is valid
     if(asm_fp == NULL) {
         printf("Input file location invalid\n");
-        freeAll();
+        freeAll(1);
         return 0;
     }
 
     if(out_fp == NULL) {
         printf("Output file location invalid\n");
-        printf("%s\n", output_file);
-        freeAll();
+        freeAll(1);
         return 0;
     }
 
-    cnt = 0; // Reset the counter
+    setupDicts();
+    printf("%d\n", getOpcode("jeq"));
+    printf("%d\n", getRegval("rg2"));
 
+    freeAll(2);
+    return 1;
+}
+
+void setupDicts(void) {
+    int cnt;
     // Populate the dictionary with opcode values
     for (n = opcode; *n != NULL; n++) {
         s = (dict_struct*)malloc(sizeof(dict_struct));
@@ -82,24 +95,33 @@ int main(int argc, const char* argv[]) {
         s -> id = cnt++;
         HASH_ADD_STR(reg_list, name, s);
     }
-
-    HASH_FIND_STR(opcode_list, "ldr", s);
-    if (s) printf("%d\n", s->id);
-    freeAll();
-    return 1;
 }
 
-void freeAll(void) {
-    free(input_file);
-    free(output_file);
+uint16_t getOpcode(char* opcode) {
+    HASH_FIND_STR(opcode_list, opcode, s);
+    return (uint16_t)s->id;
+}
 
-    HASH_ITER(hh, opcode_list, s, del) {
-        HASH_DEL(opcode_list, s);
-        free(s);
-    }
+uint16_t getRegval(char* regnum) {
+    HASH_FIND_STR(reg_list, regnum, s);
+    return (uint16_t)s->id;
+}
 
-    HASH_ITER(hh, reg_list, s, del) {
-        HASH_DEL(reg_list, s);
-        free(s);
+void freeAll(int status) {
+    switch(status) {
+        case 2:
+            HASH_ITER(hh, opcode_list, s, del) {
+                HASH_DEL(opcode_list, s);
+                free(s);
+            }
+
+            HASH_ITER(hh, reg_list, s, del) {
+                HASH_DEL(reg_list, s);
+                free(s);
+            }
+
+        case 1:
+            free(input_file);
+            free(output_file);
     }
 }
