@@ -99,7 +99,7 @@ void freeAll(void) {
     }
 
     HASH_ITER(hh, reg_list, s, del) {
-        HASH_DEL(opcode_list, s);
+        HASH_DEL(reg_list, s);
         free(s);
     }
 }
