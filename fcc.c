@@ -81,9 +81,9 @@ void setupDicts(void) {
     // Populate the dictionary with opcode values
     for (n = opcode; *n != NULL; n++) {
         s = (dict_struct*)malloc(sizeof(dict_struct));
-        strncpy(s -> name, *n, 3);
+        s -> name = *n;
         s -> id = cnt++;
-        HASH_ADD_STR(opcode_list, name, s);
+        HASH_ADD_KEYPTR(hh, opcode_list, s->name, strlen(s->name), s);
     }
 
     cnt = 0; //Reset the counter
@@ -91,9 +91,9 @@ void setupDicts(void) {
     // Populate the dictionary with reglist value
     for (n = reglist; *n != NULL; n++) {
         s = (dict_struct*)malloc(sizeof(dict_struct));
-        strncpy(s -> name, *n, 3);
+        s -> name = *n;
         s -> id = cnt++;
-        HASH_ADD_STR(reg_list, name, s);
+        HASH_ADD_KEYPTR(hh, reg_list, s->name, strlen(s->name), s);
     }
 }
 

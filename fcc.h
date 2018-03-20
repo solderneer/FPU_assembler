@@ -4,7 +4,7 @@
 #include "uthash.h"
 
 typedef struct {
-    char name[3];
+    const char *name;
     int id;
     UT_hash_handle hh;
 } dict_struct;
