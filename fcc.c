@@ -69,7 +69,7 @@ int main(int argc, const char* argv[]) {
     }
 
     setupDicts();
-    printf("%d\n", getOpcode("jeq"));
+    printf("%d\n", getOpcode("ldr.l"));
     printf("%d\n", getRegval("rg2"));
 
     freeAll(2);
@@ -82,7 +82,7 @@ void setupDicts(void) {
     for (n = opcode; *n != NULL; n++) {
         s = (dict_struct*)malloc(sizeof(dict_struct));
         s -> name = *n;
-        s -> id = cnt++;
+        s -> id = opcode_val[cnt++];
         HASH_ADD_KEYPTR(hh, opcode_list, s->name, strlen(s->name), s);
     }
 
