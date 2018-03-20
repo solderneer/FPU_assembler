@@ -1,7 +1,7 @@
 # FPU Instruction Set Architecture (FISA)
 A document outlying the instruction set architecture for the FPGA processing unit (FPU)
 
-## addu
+## add.u
 
 ### Unsigned Addition
 
@@ -230,7 +230,7 @@ Instruction form: R
 
 | 15 | 14 | 13 | 12 | 11 | 10 | 9  | 8  | 7  | 6  | 5  | 4  | 3  | 2  | 1 | 0 |
 |----|----|----|----|----|----|----|----|----|----|----|----|----|----|---|---|
-| 1  | 1  | 0  | 0  | 1  | X  | X  | X  | Imm | Imm | Imm | Imm | Imm | Imm | Imm | Imm |
+| 1  | 1  | 0  | 0  | 1  | X  | X  | X  | Ra | Ra | Ra | X  | X  | X  | X | X |
 
 Instruction function: PC = Ra
 The **jmp.r** command takes a 16-bit source register, Ra and sets the current program counter to that address.
