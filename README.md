@@ -1,5 +1,5 @@
-# FPU Instruction Set Architecture (FISA)
-A document outlying the instruction set architecture for the FPGA processing unit (FPU)
+# Artemis Instruction Set Architecture (AISA)
+A document outlying the instruction set architecture for Artemis
 
 ## add.u
 
